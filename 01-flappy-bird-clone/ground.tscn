@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvbn85ev1nl2n"]
+[gd_scene load_steps=3 format=3 uid="uid://dvbn85ev1nl2n"]
 
 [ext_resource type="Texture2D" uid="uid://dhb8e30ub812p" path="res://assets/groundGrass.png" id="1_pnkxj"]
+[ext_resource type="Script" path="res://ground.gd" id="1_ypqmy"]
 
 [node name="Ground" type="AnimatableBody2D"]
+script = ExtResource("1_ypqmy")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -17, 30, -16, 65, 18, 105, 16, 131, 26, 172, 26, 192, 4, 236, -2, 256, -24, 335, -29, 356, -3, 404, 11, 404, 36, -404, 36, -404, 11, -373, 5, -365, 11, -316, 17, -267, 2, -249, -15, -156, -22, -97, -1, -52, 0, -28, -17)
 
-[node name="GroundGrass" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_pnkxj")

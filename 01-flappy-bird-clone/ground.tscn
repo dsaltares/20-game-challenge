@@ -4,10 +4,11 @@
 [ext_resource type="Script" path="res://ground.gd" id="1_ypqmy"]
 
 [node name="Ground" type="AnimatableBody2D"]
+collision_mask = 2
 script = ExtResource("1_ypqmy")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, -17, 30, -16, 65, 18, 105, 16, 131, 26, 172, 26, 192, 4, 236, -2, 256, -24, 335, -29, 356, -3, 404, 11, 404, 36, -404, 36, -404, 11, -373, 5, -365, 11, -316, 17, -267, 2, -249, -15, -156, -22, -97, -1, -52, 0, -28, -17)
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_pnkxj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -17, 30, -16, 65, 18, 105, 16, 131, 26, 172, 26, 192, 4, 236, -2, 256, -24, 335, -29, 356, -3, 404, 11, 404, 36, -404, 36, -404, 11, -373, 5, -365, 11, -316, 17, -267, 2, -249, -15, -156, -22, -97, -1, -52, 0, -28, -17)

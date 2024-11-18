@@ -7,8 +7,8 @@
 script = ExtResource("1_mh7un")
 
 [node name="Ground" parent="." instance=ExtResource("1_7ihgh")]
-position = Vector2(404, 618)
+position = Vector2(404, 628)
 
 [node name="Ceiling" parent="." instance=ExtResource("1_7ihgh")]
-position = Vector2(404, 31)
-rotation = -3.14159
+position = Vector2(404, 33)
+rotation = 3.14159

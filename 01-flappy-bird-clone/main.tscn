@@ -11,3 +11,5 @@ script = ExtResource("1_nd3qx")
 
 [node name="Player" parent="." instance=ExtResource("1_hly45")]
 position = Vector2(170, 311)
+
+[connection signal="crashed" from="Player" to="." method="_on_player_crashed"]

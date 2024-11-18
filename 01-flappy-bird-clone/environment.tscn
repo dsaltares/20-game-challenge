@@ -1,24 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3l467qq7jwko"]
+[gd_scene load_steps=11 format=3 uid="uid://c3l467qq7jwko"]
 
 [ext_resource type="Script" path="res://environment.gd" id="1_rqlbp"]
 [ext_resource type="Texture2D" uid="uid://djs31hr610iep" path="res://assets/background.png" id="1_ty20n"]
+[ext_resource type="PackedScene" uid="uid://b8vgyoyhqtipj" path="res://obstacle_pair.tscn" id="3_4orrp"]
 [ext_resource type="PackedScene" uid="uid://df12gf8frpay1" path="res://bounds_pair.tscn" id="3_de0gp"]
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_iukt6"]
 default_input_values = [1, Vector2(1, 1), 2, Vector2(5.15, 0)]
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_7xlhx"]
-parameter_name = "speed"
+parameter_name = "offset"
 hint = 1
 max = 999999.0
 default_value_enabled = true
-default_value = 0.03
-
-[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_k5and"]
-input_name = "time"
-
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_e4foa"]
-operator = 2
 
 [sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_n6qep"]
 op_type = 0
@@ -31,27 +25,19 @@ resource_local_to_scene = true
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
-uniform float speed : hint_range(0, 999999) = 0.02999999932945;
+uniform float offset : hint_range(0, 999999) = 0;
 uniform sampler2D tex_frg_7;
 
 
 
 void fragment() {
 // FloatParameter:3
-	float n_out3p0 = speed;
-
-
-// Input:4
-	float n_out4p0 = TIME;
-
-
-// FloatOp:5
-	float n_out5p0 = n_out3p0 * n_out4p0;
+	float n_out3p0 = offset;
 
 
 // VectorCompose:6
 	float n_in6p1 = 0.00000;
-	vec2 n_out6p0 = vec2(n_out5p0, n_in6p1);
+	vec2 n_out6p0 = vec2(n_out3p0, n_in6p1);
 
 
 // UVFunc:2
@@ -69,28 +55,24 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-869.448, 64.5501)
+graph_offset = Vector2(-310.152, 4.84649)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(2040, 320)
 nodes/fragment/2/node = SubResource("VisualShaderNodeUVFunc_iukt6")
 nodes/fragment/2/position = Vector2(840, 420)
 nodes/fragment/3/node = SubResource("VisualShaderNodeFloatParameter_7xlhx")
-nodes/fragment/3/position = Vector2(-900, 200)
-nodes/fragment/4/node = SubResource("VisualShaderNodeInput_k5and")
-nodes/fragment/4/position = Vector2(-960, 780)
-nodes/fragment/5/node = SubResource("VisualShaderNodeFloatOp_e4foa")
-nodes/fragment/5/position = Vector2(-140, 400)
+nodes/fragment/3/position = Vector2(-520, 280)
 nodes/fragment/6/node = SubResource("VisualShaderNodeVectorCompose_n6qep")
 nodes/fragment/6/position = Vector2(340, 440)
 nodes/fragment/7/node = SubResource("VisualShaderNodeTexture_38uh0")
 nodes/fragment/7/position = Vector2(1380, 320)
-nodes/fragment/connections = PackedInt32Array(3, 0, 5, 0, 5, 0, 6, 0, 2, 0, 7, 0, 6, 0, 2, 2, 7, 0, 0, 0, 4, 0, 5, 1)
+nodes/fragment/connections = PackedInt32Array(2, 0, 7, 0, 6, 0, 2, 2, 7, 0, 0, 0, 3, 0, 6, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_42fnr"]
 resource_local_to_scene = true
 shader = SubResource("VisualShader_w8s3f")
-shader_parameter/speed = 0.015
+shader_parameter/offset = 0.03
 
 [node name="Environment" type="Node2D"]
 script = ExtResource("1_rqlbp")
@@ -102,6 +84,18 @@ position = Vector2(-8, -26)
 scale = Vector2(1.45, 1.45)
 texture = ExtResource("1_ty20n")
 centered = false
+
+[node name="Obstacles" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="ObstaclePair" parent="Obstacles" instance=ExtResource("3_4orrp")]
+position = Vector2(950, 0)
+
+[node name="ObstaclePair2" parent="Obstacles" instance=ExtResource("3_4orrp")]
+position = Vector2(1750, 0)
+
+[node name="ObstaclePair3" parent="Obstacles" instance=ExtResource("3_4orrp")]
+position = Vector2(2550, 0)
 
 [node name="Foreground" type="Node2D" parent="."]
 

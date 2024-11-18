@@ -3,6 +3,11 @@ extends CharacterBody2D
 
 signal crashed
 
+enum PlayerState {
+	MOVING,
+	CRASHED
+}
+
 @export var gravity := 500
 @export var flap_force := -400.0
 @export var terminal_speed := 500.0
@@ -11,6 +16,7 @@ signal crashed
 @export var time_to_align := 0.15
 
 var rotation_alignment_time := 0.0
+var state: PlayerState = PlayerState.MOVING
 
 func _physics_process(delta: float) -> void:
 	rotation_alignment_time += delta
@@ -18,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	var was_flying := velocity.y < 0
 	velocity.y += gravity * delta 
 	
-	if Input.is_action_just_pressed('jump'):
+	if state == PlayerState.MOVING and Input.is_action_just_pressed('jump'):
 		velocity.y = flap_force
 		   
 	var is_flying := velocity.y < 0
@@ -34,5 +40,6 @@ func _physics_process(delta: float) -> void:
 		rotation_degrees = target_roation_degrees
 		
 	var collides := move_and_slide()	
-	if collides:
+	if collides and state == PlayerState.MOVING:
 		crashed.emit()
+		state = PlayerState.CRASHED

@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8vgyoyhqtipj"]
+
+[ext_resource type="Script" path="res://obstacle_pair.gd" id="1_3gghg"]
+[ext_resource type="PackedScene" uid="uid://dxfxi5bpy84co" path="res://obstacle.tscn" id="2_fjtbl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndemn"]
+size = Vector2(20, 650)
+
+[node name="ObstaclePair" type="Node2D"]
+script = ExtResource("1_3gghg")
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Up" parent="Pivot" instance=ExtResource("2_fjtbl")]
+position = Vector2(61, 90)
+rotation = 3.14159
+sync_to_physics = false
+
+[node name="Down" parent="Pivot" instance=ExtResource("2_fjtbl")]
+position = Vector2(61, 562)
+sync_to_physics = false
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(127, 322)
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ndemn")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

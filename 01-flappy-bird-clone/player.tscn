@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://df4oc7cclevfc"]
+[gd_scene load_steps=11 format=3 uid="uid://df4oc7cclevfc"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6w7pk"]
 [ext_resource type="Texture2D" uid="uid://ddmiaa448kv0f" path="res://assets/planeRed1.png" id="1_66kri"]
 [ext_resource type="Texture2D" uid="uid://d3688aoxhpx" path="res://assets/planeRed2.png" id="2_hft56"]
 [ext_resource type="Texture2D" uid="uid://7mo7uhxbbnk8" path="res://assets/planeRed3.png" id="3_rb7r2"]
+[ext_resource type="Texture2D" uid="uid://od2vfiuag8b6" path="res://assets/puffLarge.png" id="5_6427d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wf6kn"]
 animations = [{
@@ -25,6 +26,43 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_1bfqh"]
 radius = 32.0624
 
+[sub_resource type="Animation" id="Animation_v0vs6"]
+resource_name = "flap"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_v4hbw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p7cs1"]
+_data = {
+"RESET": SubResource("Animation_v4hbw"),
+"flap": SubResource("Animation_v0vs6")
+}
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_6w7pk")
@@ -35,3 +73,16 @@ frame_progress = 0.0864626
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1bfqh")
+
+[node name="Puff" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Puff"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-58, 6)
+texture = ExtResource("5_6427d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Puff"]
+libraries = {
+"": SubResource("AnimationLibrary_p7cs1")
+}
+autoplay = "RESET"

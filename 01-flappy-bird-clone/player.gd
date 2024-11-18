@@ -15,6 +15,7 @@ enum PlayerState {
 @export var fall_angle_degrees := -15.0
 @export var time_to_align := 0.15
 
+@onready var puff_anim_player: AnimationPlayer = $Puff/AnimationPlayer
 var rotation_alignment_time := 0.0
 var state: PlayerState = PlayerState.MOVING
 
@@ -26,6 +27,7 @@ func _physics_process(delta: float) -> void:
 	
 	if state == PlayerState.MOVING and Input.is_action_just_pressed('jump'):
 		velocity.y = flap_force
+		puff_anim_player.play('flap')
 		   
 	var is_flying := velocity.y < 0
 	if was_flying != is_flying:

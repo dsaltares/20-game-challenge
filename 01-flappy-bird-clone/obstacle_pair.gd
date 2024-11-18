@@ -7,6 +7,7 @@ signal avoided
 
 @onready var pivot: Node2D = $Pivot
 @onready var down: Obstacle = $Pivot/Down
+@onready var avoided_sfx: AudioStreamPlayer = $AvoidedSFX
 
 func randomize() -> void:
 	var half_variance := vertical_variance / 2.0
@@ -18,3 +19,4 @@ func get_width() -> int:
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	avoided.emit()
+	avoided_sfx.play()

@@ -16,6 +16,8 @@ enum PlayerState {
 @export var time_to_align := 0.15
 
 @onready var puff_anim_player: AnimationPlayer = $Puff/AnimationPlayer
+@onready var crash_sfx: AudioStreamPlayer = $CrashSFX
+@onready var flap_sfx: AudioStreamPlayer = $FlapSFX
 var rotation_alignment_time := 0.0
 var state: PlayerState = PlayerState.MOVING
 
@@ -28,6 +30,7 @@ func _physics_process(delta: float) -> void:
 	if state == PlayerState.MOVING and Input.is_action_just_pressed('jump'):
 		velocity.y = flap_force
 		puff_anim_player.play('flap')
+		flap_sfx.play()
 		   
 	var is_flying := velocity.y < 0
 	if was_flying != is_flying:
@@ -45,3 +48,4 @@ func _physics_process(delta: float) -> void:
 	if collides and state == PlayerState.MOVING:
 		crashed.emit()
 		state = PlayerState.CRASHED
+		crash_sfx.play()

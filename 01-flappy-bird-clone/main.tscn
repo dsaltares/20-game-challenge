@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdjvxxi24wv50"]
+[gd_scene load_steps=6 format=3 uid="uid://bdjvxxi24wv50"]
 
 [ext_resource type="PackedScene" uid="uid://df4oc7cclevfc" path="res://player.tscn" id="1_hly45"]
 [ext_resource type="Script" path="res://main.gd" id="1_nd3qx"]
 [ext_resource type="PackedScene" uid="uid://c3l467qq7jwko" path="res://environment.tscn" id="3_8ciih"]
+[ext_resource type="PackedScene" uid="uid://0kjfq2ojad7v" path="res://ui.tscn" id="4_6hqsr"]
+[ext_resource type="Script" path="res://ui.gd" id="5_o7010"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_nd3qx")
@@ -12,4 +14,8 @@ script = ExtResource("1_nd3qx")
 [node name="Player" parent="." instance=ExtResource("1_hly45")]
 position = Vector2(170, 311)
 
+[node name="UI" parent="." instance=ExtResource("4_6hqsr")]
+script = ExtResource("5_o7010")
+
+[connection signal="obstacle_avoided" from="Environment" to="." method="_on_obstacle_avoided"]
 [connection signal="crashed" from="Player" to="." method="_on_player_crashed"]

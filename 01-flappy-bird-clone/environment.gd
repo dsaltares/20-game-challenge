@@ -3,7 +3,7 @@ extends Node2D
 
 signal obstacle_avoided
 
-enum EnvironmentState {
+enum State {
 	MOVING,
 	STOPPED
 }
@@ -15,7 +15,7 @@ enum EnvironmentState {
 @onready var background: Sprite2D = $Background
 @onready var bounds: Node2D = %Bounds
 @onready var obstacles: Node2D = %Obstacles
-var state : EnvironmentState = EnvironmentState.MOVING
+var state := State.MOVING
 var background_offset := 0.0
 
 func _ready() -> void:
@@ -24,7 +24,7 @@ func _ready() -> void:
 		pair.connect('avoided', _on_obstacle_avoided)
 
 func _physics_process(delta: float) -> void:
-	if state == EnvironmentState.MOVING:
+	if state == State.MOVING:
 		_update_bounds(delta)
 		_update_obstacles(delta)
 	
@@ -59,8 +59,8 @@ func _update_obstacles(delta: float) -> void:
 			pair.randomize()
 
 func _update_background(delta: float) -> void:
-	var speed := background_speed if state == EnvironmentState.MOVING else 0.0
-	background_offset += speed * delta
+	var current_background_speed := background_speed if state == State.MOVING else 0.0
+	background_offset += current_background_speed * delta
 	background.material.set_shader_parameter('offset', background_offset)
 
 func _on_obstacle_avoided() -> void:

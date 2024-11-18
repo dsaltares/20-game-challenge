@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 signal crashed
 
-enum PlayerState {
+enum State {
 	MOVING,
 	CRASHED
 }
@@ -19,7 +19,7 @@ enum PlayerState {
 @onready var crash_sfx: AudioStreamPlayer = $CrashSFX
 @onready var flap_sfx: AudioStreamPlayer = $FlapSFX
 var rotation_alignment_time := 0.0
-var state: PlayerState = PlayerState.MOVING
+var state := State.MOVING
 
 func _physics_process(delta: float) -> void:
 	rotation_alignment_time += delta
@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	var was_flying := velocity.y < 0
 	velocity.y += gravity * delta 
 	
-	if state == PlayerState.MOVING and Input.is_action_just_pressed('jump'):
+	if state == State.MOVING and Input.is_action_just_pressed('jump'):
 		velocity.y = flap_force
 		puff_anim_player.play('flap')
 		flap_sfx.play()
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 		rotation_degrees = target_roation_degrees
 		
 	var collides := move_and_slide()	
-	if collides and state == PlayerState.MOVING:
+	if collides and state == State.MOVING:
 		crashed.emit()
-		state = PlayerState.CRASHED
+		state = State.CRASHED
 		crash_sfx.play()

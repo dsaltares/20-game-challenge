@@ -1,22 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyv6os10jsnro"]
+[gd_scene load_steps=6 format=3 uid="uid://dyv6os10jsnro"]
 
 [ext_resource type="PackedScene" uid="uid://ts2wqcuq3i6v" path="res://player.tscn" id="1_j3nec"]
+[ext_resource type="Texture2D" uid="uid://dnvr7hijw6brv" path="res://assets/bg.png" id="1_m4b0r"]
+[ext_resource type="PackedScene" uid="uid://ch0k1yinipod2" path="res://infinite_ground.tscn" id="2_r17sh"]
+[ext_resource type="PackedScene" uid="uid://cq8x25lkyk86a" path="res://game_camera.tscn" id="3_jxpp3"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l1ooc"]
 
 [node name="Main" type="Node2D"]
 
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+position = Vector2(-220, -292)
+scale = Vector2(5.66156, 5.10156)
+texture = ExtResource("1_m4b0r")
+centered = false
+
+[node name="InfiniteGround" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_r17sh")]
+camera = NodePath("../GameCamera")
+
 [node name="Player" parent="." instance=ExtResource("1_j3nec")]
-position = Vector2(120, 485)
+position = Vector2(150, 451)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, 594)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_l1ooc")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="Ceiling" type="StaticBody2D" parent="."]
 rotation = 3.14159
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
 shape = SubResource("WorldBoundaryShape2D_l1ooc")
+
+[node name="GameCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_jxpp3")]
+position = Vector2(150, 325)
+offset = Vector2(300, 0)
+target = NodePath("../Player")

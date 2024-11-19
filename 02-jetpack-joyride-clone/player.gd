@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var gravity := 700.0
 @export var boost_acceleration := -900.0
+@export var horizontal_speed := 350.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -16,6 +17,7 @@ func _update_movement(delta: float) -> void:
 		acceleration = boost_acceleration
 	
 	velocity.y += acceleration * delta
+	velocity.x = horizontal_speed
 	
 	move_and_slide()
 	

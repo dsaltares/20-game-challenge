@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://drsn11epqk0lb"]
+
+[ext_resource type="Script" path="res://laser.gd" id="1_u2khv"]
+[ext_resource type="PackedScene" uid="uid://dgvuvrj07asms" path="res://laser_beam.tscn" id="1_y0blo"]
+[ext_resource type="Texture2D" uid="uid://ds3wp7d2gm7kn" path="res://assets/laserUpShoot.png" id="2_4cfpw"]
+
+[node name="Laser" type="Node2D"]
+script = ExtResource("1_u2khv")
+
+[node name="Pivot" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="LaserBeam" parent="Pivot" instance=ExtResource("1_y0blo")]
+unique_name_in_owner = true
+
+[node name="Start" type="Sprite2D" parent="Pivot"]
+unique_name_in_owner = true
+position = Vector2(0, -65)
+rotation = -3.14159
+texture = ExtResource("2_4cfpw")
+
+[node name="End" type="Sprite2D" parent="Pivot"]
+unique_name_in_owner = true
+position = Vector2(0, 65)
+texture = ExtResource("2_4cfpw")

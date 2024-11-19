@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var horizontal_speed := 350.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var start_pos := global_position
+
 
 func _physics_process(delta: float) -> void:
 	_update_movement(delta)

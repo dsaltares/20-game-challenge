@@ -1,6 +1,6 @@
 @tool
 class_name LaserBeam
-extends StaticBody2D
+extends Area2D
 
 @export var length := 70 : set = _set_length
 
@@ -18,3 +18,9 @@ func _set_length(new_length: int) -> void:
 	print('new_scale ', scale_y)
 	sprite.scale.y = scale_y
 	collision_shape.scale.y = scale_y
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Player:
+		var player := body as Player
+		player.die()

@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyv6os10jsnro"]
+[gd_scene load_steps=9 format=3 uid="uid://dyv6os10jsnro"]
 
 [ext_resource type="PackedScene" uid="uid://ts2wqcuq3i6v" path="res://player.tscn" id="1_j3nec"]
 [ext_resource type="Texture2D" uid="uid://dnvr7hijw6brv" path="res://assets/bg.png" id="1_m4b0r"]
+[ext_resource type="Script" path="res://main.gd" id="1_v1g7v"]
 [ext_resource type="PackedScene" uid="uid://ch0k1yinipod2" path="res://infinite_ground.tscn" id="2_r17sh"]
 [ext_resource type="PackedScene" uid="uid://cq8x25lkyk86a" path="res://game_camera.tscn" id="3_jxpp3"]
 [ext_resource type="PackedScene" uid="uid://drsn11epqk0lb" path="res://laser.tscn" id="5_jypr3"]
+[ext_resource type="PackedScene" uid="uid://tlp6c4iwuw6n" path="res://ui.tscn" id="7_kgfbo"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l1ooc"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_v1g7v")
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -100
@@ -23,6 +26,7 @@ centered = false
 camera = NodePath("../GameCamera")
 
 [node name="Player" parent="." instance=ExtResource("1_j3nec")]
+unique_name_in_owner = true
 position = Vector2(150, 451)
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
@@ -39,3 +43,8 @@ target = NodePath("../Player")
 [node name="Laser" parent="." instance=ExtResource("5_jypr3")]
 position = Vector2(769, 349)
 length = 100
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("7_kgfbo")]
+unique_name_in_owner = true

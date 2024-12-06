@@ -1,8 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://tlp6c4iwuw6n"]
+[gd_scene load_steps=5 format=3 uid="uid://tlp6c4iwuw6n"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_0wk8y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_stfvj"]
+font_size = 24
+outline_size = 8
+outline_color = Color(0.105614, 0.105614, 0.105614, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mfj7m"]
+font_size = 86
+outline_size = 8
+outline_color = Color(0.105614, 0.105614, 0.105614, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vgird"]
 font_size = 24
 outline_size = 8
 outline_color = Color(0.105614, 0.105614, 0.105614, 1)
@@ -17,6 +27,8 @@ grow_vertical = 2
 script = ExtResource("1_0wk8y")
 
 [node name="Game" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,3 +44,38 @@ offset_right = 124.0
 offset_bottom = 54.0
 text = "Score: 10"
 label_settings = SubResource("LabelSettings_stfvj")
+
+[node name="GameOver" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.5
+offset_top = -78.0
+offset_right = 233.5
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOver" type="Label" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_mfj7m")
+horizontal_alignment = 1
+
+[node name="PressSpace" type="Label" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+text = "Press space to try again"
+label_settings = SubResource("LabelSettings_vgird")
+horizontal_alignment = 1

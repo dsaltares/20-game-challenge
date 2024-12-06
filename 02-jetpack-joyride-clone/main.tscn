@@ -48,3 +48,5 @@ length = 100
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("7_kgfbo")]
 unique_name_in_owner = true
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]

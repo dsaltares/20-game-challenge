@@ -21,7 +21,11 @@ func _physics_process(delta: float) -> void:
 	_update_ui()
 
 func _update_game(_delta: float) -> void:
-	score = player.get_moved_distance() / 100
+	score = int(player.get_moved_distance() / 100)
 	
 func _update_ui() -> void:
 	ui.score = score
+
+func _on_player_died() -> void:
+	state = State.GAME_OVER
+	ui.state = UserInterface.State.GAME_OVER

@@ -7,3 +7,8 @@ extends Camera2D
 
 func _physics_process(_delta: float) -> void:
 	global_position.x = target.global_position.x
+
+func get_rect() -> Rect2:
+	var viewport_size := get_viewport().get_visible_rect().size
+	var half_viewport_size := viewport_size * 0.5 * zoom
+	return Rect2(global_position - half_viewport_size, viewport_size * zoom)

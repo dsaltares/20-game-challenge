@@ -29,3 +29,8 @@ func _update_ui() -> void:
 func _on_player_died() -> void:
 	state = State.GAME_OVER
 	ui.state = UserInterface.State.GAME_OVER
+
+
+func _on_ui_restart() -> void:
+	get_tree().reload_current_scene()
+	

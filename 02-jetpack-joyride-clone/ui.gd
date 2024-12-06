@@ -1,6 +1,8 @@
 class_name UserInterface
 extends Control
 
+signal restart
+
 enum State {
 	GAME,
 	GAME_OVER
@@ -25,7 +27,7 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if Input.is_action_just_pressed('boost'):
-		get_tree().reload_current_scene()
+		restart.emit()
 
 func _update_game() -> void:
 	score_label.text = 'Score: %d' % score

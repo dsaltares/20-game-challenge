@@ -15,7 +15,6 @@ func _ready() -> void:
 func _set_length(new_length: int) -> void:
 	length = new_length
 	var scale_y := float(length) / float(sprite.texture.get_height())
-	print('new_scale ', scale_y)
 	sprite.scale.y = scale_y
 	collision_shape.scale.y = scale_y
 

@@ -1,7 +1,7 @@
 class_name InfiniteGround
 extends Node2D
 
-@export var camera : Camera2D
+@export var camera : GameCamera
 
 func _process(_delta: float) -> void:
 	var first_layer : TileMapLayer = get_child(0)
@@ -26,10 +26,4 @@ func _is_layer_visible(layer: TileMapLayer) -> bool:
 		layer.get_used_rect().size.y * tile_size.y,
 	)
 	var layer_rect := Rect2(layer.global_position, layer_size)
-	var viewport_size := camera.get_viewport().get_visible_rect().size
-	var half_viewport_size := viewport_size * 0.5 * camera.zoom
-	var camera_rect = Rect2(
-		camera.global_position - half_viewport_size,
-		viewport_size * camera.zoom
-	)
-	return camera_rect.intersects(layer_rect)
+	return camera.get_rect().intersects(layer_rect)

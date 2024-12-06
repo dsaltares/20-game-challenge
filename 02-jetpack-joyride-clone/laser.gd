@@ -31,3 +31,11 @@ func _relayout() -> void:
 	start.position.y = -length * 0.5 - emitter_height * 0.5 + 5
 	end.position.y = length * 0.5 + emitter_height * 0.5 - 5
 	pivot.rotation_degrees = 0.0 if orientation == Orientation.VERTICAL else 90.0
+
+func get_rect() -> Rect2:
+	var emitter_length := start.get_rect().size.x
+	var beam_length := length + (emitter_length * 2)
+	var laser_size := Vector2(beam_length, emitter_length)
+	if orientation == Orientation.VERTICAL:
+		laser_size = Vector2(emitter_length, beam_length)
+	return Rect2(global_position - laser_size * 0.5, laser_size)

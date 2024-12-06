@@ -21,17 +21,15 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if state == State.GAME:
 		_update_game()
-
-func _input(event: InputEvent) -> void:
-	if state != State.GAME_OVER:
-		return
-	
-	if Input.is_action_just_pressed('boost'):
-		restart.emit()
+	elif state == State.GAME_OVER:
+		_update_game_over()
 
 func _update_game() -> void:
 	score_label.text = 'Score: %d' % score
 
+func _update_game_over() -> void:
+	if Input.is_action_just_pressed('boost'):
+		restart.emit()
 
 func get_state() -> State:
 	return state

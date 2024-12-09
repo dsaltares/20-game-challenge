@@ -10,9 +10,14 @@ enum State {
 
 @onready var player: Player = %Player
 @onready var ui: UserInterface = %UI
+@onready var procedural_environment: ProceduralEnvironment = $ProceduralEnvironment
+@onready var infinite_ground: InfiniteGround = $InfiniteGround
 
 var score := 0
 var state := State.GAME
+
+func _ready() -> void:
+	procedural_environment.ground_position = infinite_ground.get_ground_position()
 
 func _physics_process(delta: float) -> void:
 	if state == State.GAME:
@@ -22,6 +27,7 @@ func _physics_process(delta: float) -> void:
 
 func _update_game(_delta: float) -> void:
 	score = int(player.get_moved_distance() / 100)
+	procedural_environment.score = score
 	
 func _update_ui() -> void:
 	ui.score = score

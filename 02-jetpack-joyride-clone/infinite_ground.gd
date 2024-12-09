@@ -27,3 +27,7 @@ func _is_layer_visible(layer: TileMapLayer) -> bool:
 	)
 	var layer_rect := Rect2(layer.global_position, layer_size)
 	return camera.get_rect().intersects(layer_rect)
+
+func get_ground_position() -> float:
+	var layer : TileMapLayer = get_child(0)
+	return layer.global_position.y

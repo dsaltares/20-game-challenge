@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bejjugo64bml7"]
+
+[ext_resource type="Script" path="res://laser_group.gd" id="1_cflnr"]
+
+[node name="LaserGroup" type="Node2D"]
+script = ExtResource("1_cflnr")

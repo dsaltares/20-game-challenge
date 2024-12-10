@@ -26,7 +26,7 @@ func randomize(count: int) -> void:
 		add_child(laser)
 
 	var orientation := Orientation.VERTICAL
-	if randf() > 0.5:
+	if randf() > 0.66:
 		orientation = Orientation.HORIZONTAL
 	
 	for laser in get_children() as Array[Laser]:

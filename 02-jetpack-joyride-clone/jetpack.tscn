@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://0333i1vek1fd"]
+
+[ext_resource type="Texture2D" uid="uid://d05rgiukxj40j" path="res://assets/flame.png" id="1_amawk"]
+[ext_resource type="Script" path="res://jetpack.gd" id="1_s7fu7"]
+[ext_resource type="Texture2D" uid="uid://dj83d5qwkdx2d" path="res://assets/jetpack.png" id="2_f07gy"]
+
+[sub_resource type="Animation" id="Animation_2v2xm"]
+resource_name = "burn"
+length = 0.5
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlameLeft:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.303318, 0.371803), Vector2(0.303, 0.5), Vector2(0.303318, 0.371803)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlameRight:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.303318, 0.371803), Vector2(0.303, 0.5), Vector2(0.303318, 0.371803)]
+}
+
+[sub_resource type="Animation" id="Animation_mhdht"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlameLeft:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.303318, 0.371803)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlameRight:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.303318, 0.371803)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_17cpm"]
+_data = {
+"RESET": SubResource("Animation_mhdht"),
+"burn": SubResource("Animation_2v2xm")
+}
+
+[node name="Jetpack" type="Node2D"]
+script = ExtResource("1_s7fu7")
+
+[node name="FlameLeft" type="Sprite2D" parent="."]
+position = Vector2(-36, 38)
+scale = Vector2(0.303318, 0.371803)
+texture = ExtResource("1_amawk")
+centered = false
+
+[node name="FlameRight" type="Sprite2D" parent="."]
+position = Vector2(2, 38)
+scale = Vector2(0.303318, 0.371803)
+texture = ExtResource("1_amawk")
+centered = false
+
+[node name="Backpack" type="Sprite2D" parent="."]
+position = Vector2(-11, 3)
+texture = ExtResource("2_f07gy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_17cpm")
+}
+autoplay = "burn"

@@ -2,15 +2,15 @@
 
 importer="texture_atlas"
 type="Texture2D"
-uid="uid://dnvr7hijw6brv"
-path="res://.godot/imported/bg.png-23a59c2e9cba2223a50fa3fe41b70b25.res"
+uid="uid://bj8hrmaakxlw0"
+path="res://.godot/imported/smoke.png-dd48eb81a12e0cb45caa95e293df3180.res"
 group_file="res://assets/miscelanea_atlas.png"
 valid=true
 [deps]
 
 
-source_file="res://assets/bg.png"
-dest_files=["res://.godot/imported/bg.png-23a59c2e9cba2223a50fa3fe41b70b25.res"]
+source_file="res://assets/smoke.png"
+dest_files=["res://.godot/imported/smoke.png-dd48eb81a12e0cb45caa95e293df3180.res"]
 
 [params]
 

@@ -14,6 +14,7 @@ enum State {
 @export var death_drag := 250.0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var jetpack: Jetpack = $Jetpack
 @onready var start_pos := global_position
 
 var state := State.RUNNING
@@ -26,6 +27,9 @@ func _update_movement(delta: float) -> void:
 	var acceleration := gravity
 	if state == State.RUNNING and Input.is_action_pressed('boost'):
 		acceleration = boost_acceleration
+		jetpack.ignited = true
+	else:
+		jetpack.ignited = false
 	
 	velocity.y += acceleration * delta
 	

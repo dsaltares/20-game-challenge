@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://ts2wqcuq3i6v"]
 
-[ext_resource type="Texture2D" uid="uid://dj83d5qwkdx2d" path="res://assets/jetpack.png" id="1_djafn"]
 [ext_resource type="Script" path="res://player.gd" id="1_vbsog"]
+[ext_resource type="PackedScene" uid="uid://0333i1vek1fd" path="res://jetpack.tscn" id="2_hu1v1"]
 [ext_resource type="Texture2D" uid="uid://bwn8pcph1t2e4" path="res://assets/player/p1_hurt.png" id="2_lkxaw"]
 [ext_resource type="Texture2D" uid="uid://be8e55o0hedqp" path="res://assets/player/p1_walk01.png" id="3_1ok32"]
 [ext_resource type="Texture2D" uid="uid://b0qbr46p5jipg" path="res://assets/player/p1_walk02.png" id="4_rqbd2"]
@@ -86,13 +86,11 @@ height = 92.0
 collision_layer = 2
 script = ExtResource("1_vbsog")
 
-[node name="Jetpack" type="Sprite2D" parent="."]
-position = Vector2(-11, 3)
-texture = ExtResource("1_djafn")
+[node name="Jetpack" parent="." instance=ExtResource("2_hu1v1")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_23xts")
-animation = &"hurt"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

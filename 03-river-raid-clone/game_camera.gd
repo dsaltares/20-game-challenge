@@ -7,4 +7,4 @@ func _physics_process(delta: float) -> void:
 	if not target:
 		return
 		
-	global_position += Vector2.UP * target.base_forward_speed * delta
+	global_position += target.locked_velocity * delta

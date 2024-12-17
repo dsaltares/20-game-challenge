@@ -17,8 +17,10 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=576
-window/size/viewport_height=1024
+window/size/viewport_width=360
+window/size/viewport_height=640
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
 window/handheld/orientation=1
 
 [global_group]
@@ -80,10 +82,6 @@ restart={
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="bullets"
 2d_physics/layer_5="items"
-
-[physics]
-
-common/physics_interpolation=true
 
 [rendering]
 

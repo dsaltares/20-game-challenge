@@ -8,7 +8,7 @@
 script = ExtResource("1_x5vvs")
 
 [node name="Player" parent="." instance=ExtResource("1_yj4kg")]
-position = Vector2(0, 387)
+position = Vector2(0, 233)
 
 [node name="GameCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_lkkg3")]
 target = NodePath("../Player")

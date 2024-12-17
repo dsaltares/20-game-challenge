@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://bc2k706ic5tm1" path="res://bullet_emitter.tscn" id="4_3jm68"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ki4wi"]
-size = Vector2(64, 64)
+size = Vector2(32, 32)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cf7x6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_e5fy8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -21,11 +21,11 @@ shape = SubResource("RectangleShape2D_ki4wi")
 [node name="Guns" parent="." instance=ExtResource("4_3jm68")]
 
 [node name="RightGun" parent="Guns" instance=ExtResource("4_3jm68")]
-position = Vector2(28, -44)
+position = Vector2(14, -16)
 rotation = -1.5708
 BulletScene = ExtResource("3_g6fe7")
 
 [node name="LeftGun" parent="Guns" instance=ExtResource("4_3jm68")]
-position = Vector2(-28, -44)
+position = Vector2(-13, -16)
 rotation = -1.5708
 BulletScene = ExtResource("3_g6fe7")

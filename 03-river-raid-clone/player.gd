@@ -19,8 +19,9 @@ func _physics_process(delta: float) -> void:
 	velocity = locked_velocity + free_velocity
 	move_and_slide()
 
+func _process(delta: float) -> void:
 	if Input.is_action_just_pressed('shoot'):
 		shoot()
-		
+
 func shoot() -> void:
 	guns.shoot() 

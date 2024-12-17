@@ -17,10 +17,10 @@ func shoot() -> void:
 		assert(node is Bullet)
 		var bullet := node as Bullet
 		bullet.ignore_body = ignore_body
-		
-		get_tree().root.add_child(bullet)
 		bullet.global_position = global_position
 		bullet.global_rotation = global_rotation
+		get_tree().root.add_child(bullet)
+		
 	
 	for child in get_children():
 		if child is BulletEmitter:

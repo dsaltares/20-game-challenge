@@ -18,9 +18,17 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		return
 		
 	hit(body)
+	
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if ignore_body == area:
+		return
+	
+	hit(area)
 
 func set_ignore(body: Node2D) -> void:
 	hitbox.ignore
 
 func hit(body: Node2D) -> void:
+	if body.has_method('hit'):
+		body.call('hit', damage)
 	queue_free()

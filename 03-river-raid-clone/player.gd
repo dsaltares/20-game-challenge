@@ -11,7 +11,7 @@ enum State {
 const BulletScena := preload('res://bullet.tscn')
 
 @export var free_speed := 750.0
-@export var locked_velocity := Vector2.UP * 300
+@export var locked_velocity := Vector2.UP * 100
 @export var fuel_consumption_by_1000_units := 5
 
 @onready var guns: BulletEmitter = $Guns
@@ -19,6 +19,7 @@ const BulletScena := preload('res://bullet.tscn')
 
 var free_velocity := Vector2.ZERO
 var fuel := 100.0
+var health := 100.0
 var state := State.FLYING
 
 func _ready() -> void:
@@ -29,6 +30,13 @@ func _physics_process(delta: float) -> void:
 		_update_flying(delta)
 	elif state == State.DEAD:
 		_update_dead(delta)
+
+func hit(damage: float) -> void:
+	health = max(health - damage, 0.0)
+	if health <= 0.0:
+		state = State.DEAD
+		died.emit()
+	
 
 func _update_flying(delta: float) -> void:
 	if Input.is_action_just_pressed('shoot'):

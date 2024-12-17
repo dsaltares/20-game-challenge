@@ -18,5 +18,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not target:
 		return
+	
+	if target.state == Player.State.DEAD:
+		return
 		
 	global_position += target.locked_velocity * delta

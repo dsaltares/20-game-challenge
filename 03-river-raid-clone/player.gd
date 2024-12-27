@@ -13,13 +13,15 @@ const BulletScena := preload('res://bullet.tscn')
 @export var free_speed := 750.0
 @export var locked_velocity := Vector2.UP * 100
 @export var fuel_consumption_by_1000_units := 5
+@export var max_fuel := 100.0
+@export var max_health := 100.0
 
 @onready var guns: BulletEmitter = $Guns
 @onready var last_position := global_position
+@onready var fuel := max_fuel
+@onready var health := max_health
 
 var free_velocity := Vector2.ZERO
-var fuel := 100.0
-var health := 100.0
 var state := State.FLYING
 
 func _ready() -> void:

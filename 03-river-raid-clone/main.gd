@@ -6,8 +6,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed('restart'):
-		get_tree().call_group('transient', 'queue_free')
-		get_tree().reload_current_scene()
+		restart_game()
 
 func _setup_window() -> void:
 	var screen_size := DisplayServer.screen_get_size()
@@ -24,3 +23,7 @@ func _setup_window() -> void:
 	var centered_position := (screen_size - window_size) / 2
 	DisplayServer.window_set_size(window_size)
 	DisplayServer.window_set_position(centered_position)
+
+func restart_game() -> void:
+	get_tree().call_group('transient', 'queue_free')
+	get_tree().reload_current_scene()

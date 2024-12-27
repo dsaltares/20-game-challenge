@@ -23,3 +23,5 @@ layer = 2
 
 [node name="UI" parent="UILayer" node_paths=PackedStringArray("player") instance=ExtResource("5_bpk7t")]
 player = NodePath("../../Player")
+
+[connection signal="restart_game" from="UILayer/UI" to="." method="restart_game"]

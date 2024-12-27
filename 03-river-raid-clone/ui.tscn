@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://di5p7160fbsob"]
+[gd_scene load_steps=4 format=3 uid="uid://di5p7160fbsob"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_7m6v5"]
 [ext_resource type="PackedScene" uid="uid://bmnk5qwvypwnu" path="res://game_ui.tscn" id="2_5glxa"]
+[ext_resource type="PackedScene" uid="uid://bkxuce0rqcgof" path="res://game_over_ui.tscn" id="3_vf3wk"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -14,3 +15,8 @@ script = ExtResource("1_7m6v5")
 
 [node name="GameUI" parent="." instance=ExtResource("2_5glxa")]
 layout_mode = 1
+
+[node name="GameOverUI" parent="." instance=ExtResource("3_vf3wk")]
+layout_mode = 1
+
+[connection signal="restart_game" from="GameOverUI" to="." method="_on_game_over_ui_restart_game"]

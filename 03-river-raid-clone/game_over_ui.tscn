@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkxuce0rqcgof"]
+
+[ext_resource type="Script" path="res://game_over_ui.gd" id="1_qkofo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_85mt4"]
+font_size = 36
+
+[node name="GameOverUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qkofo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -97.5
+offset_right = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="GameOver" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_85mt4")
+horizontal_alignment = 1
+
+[node name="Restart" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Press space to restart"
+horizontal_alignment = 1

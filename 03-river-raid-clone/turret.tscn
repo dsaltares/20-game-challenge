@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://turret.gd" id="1_assxp"]
 [ext_resource type="Texture2D" uid="uid://djxkg7lkxxnd4" path="res://icon.svg" id="1_ypbff"]
 [ext_resource type="PackedScene" uid="uid://bc2k706ic5tm1" path="res://bullet_emitter.tscn" id="3_osj5b"]
-[ext_resource type="PackedScene" uid="uid://b5ydkh1fhr31r" path="res://bullet.tscn" id="4_1v23v"]
+[ext_resource type="PackedScene" uid="uid://bn3b4dd01ppa3" path="res://turret_bullet.tscn" id="4_1cmve"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_umj1w"]
 radius = 300.0
@@ -35,13 +35,13 @@ offset = Vector2(65, 0)
 
 [node name="BulletEmitter" parent="Cannon" instance=ExtResource("3_osj5b")]
 position = Vector2(138.889, 0)
-BulletScene = ExtResource("4_1v23v")
+BulletScene = ExtResource("4_1cmve")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6ab3j")
 
 [node name="ShootTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.33
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

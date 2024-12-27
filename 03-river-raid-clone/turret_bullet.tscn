@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn3b4dd01ppa3"]
+
+[ext_resource type="PackedScene" uid="uid://b5ydkh1fhr31r" path="res://bullet.tscn" id="1_vmxyk"]
+
+[node name="TurretBullet" instance=ExtResource("1_vmxyk")]
+speed = 800.0

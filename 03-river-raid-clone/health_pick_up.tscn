@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmoopw5sf6mft"]
+
+[ext_resource type="PackedScene" uid="uid://bki38wfev8iyn" path="res://pick_up.tscn" id="1_fen5y"]
+[ext_resource type="Script" path="res://health_pick_up.gd" id="2_sp1e6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jumwf"]
+size = Vector2(12, 12)
+
+[sub_resource type="Gradient" id="Gradient_xeub5"]
+colors = PackedColorArray(0, 1, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f3h1u"]
+gradient = SubResource("Gradient_xeub5")
+width = 12
+height = 12
+
+[node name="HealthPickUp" instance=ExtResource("1_fen5y")]
+script = ExtResource("2_sp1e6")
+amount = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_jumwf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = SubResource("GradientTexture2D_f3h1u")

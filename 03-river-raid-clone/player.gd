@@ -38,7 +38,12 @@ func hit(damage: float) -> void:
 	if health <= 0.0:
 		state = State.DEAD
 		died.emit()
-	
+
+func pick_up_fuel(amount: float) -> void:
+	fuel = min(fuel + amount, max_fuel)
+
+func pick_up_health(amount: float) -> void:
+	health = min(health + amount, max_health)
 
 func _update_flying(delta: float) -> void:
 	if Input.is_action_just_pressed('shoot'):

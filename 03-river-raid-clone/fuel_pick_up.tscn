@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://eh0ijmqfdn8h"]
+
+[ext_resource type="PackedScene" uid="uid://bki38wfev8iyn" path="res://pick_up.tscn" id="1_ta2ld"]
+[ext_resource type="Script" path="res://fuel_pick_up.gd" id="2_q4h3o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jumwf"]
+size = Vector2(12, 12)
+
+[sub_resource type="Gradient" id="Gradient_xeub5"]
+colors = PackedColorArray(0, 0, 1, 1, 0, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n2xd7"]
+gradient = SubResource("Gradient_xeub5")
+width = 12
+height = 12
+
+[node name="FuelPickUp" instance=ExtResource("1_ta2ld")]
+script = ExtResource("2_q4h3o")
+amount = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_jumwf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = SubResource("GradientTexture2D_n2xd7")

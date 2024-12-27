@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsabqtdkvw23r"]
+[gd_scene load_steps=8 format=3 uid="uid://bsabqtdkvw23r"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_x5vvs"]
 [ext_resource type="PackedScene" uid="uid://jqfpxui6ouoc" path="res://player.tscn" id="1_yj4kg"]
 [ext_resource type="PackedScene" uid="uid://cqvl8j3bwp7gb" path="res://game_camera.tscn" id="2_lkkg3"]
 [ext_resource type="PackedScene" uid="uid://c56mccohk50rn" path="res://turret.tscn" id="4_ksdwu"]
 [ext_resource type="PackedScene" uid="uid://di5p7160fbsob" path="res://ui.tscn" id="5_bpk7t"]
+[ext_resource type="PackedScene" uid="uid://eh0ijmqfdn8h" path="res://fuel_pick_up.tscn" id="6_iueaw"]
+[ext_resource type="PackedScene" uid="uid://dmoopw5sf6mft" path="res://health_pick_up.tscn" id="7_ydlee"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_x5vvs")
@@ -23,5 +25,17 @@ layer = 2
 
 [node name="UI" parent="UILayer" node_paths=PackedStringArray("player") instance=ExtResource("5_bpk7t")]
 player = NodePath("../../Player")
+
+[node name="FuelPickUp" parent="." instance=ExtResource("6_iueaw")]
+position = Vector2(-79, -171)
+
+[node name="HealthPickUp" parent="." instance=ExtResource("7_ydlee")]
+position = Vector2(60, -327)
+
+[node name="HealthPickUp2" parent="." instance=ExtResource("7_ydlee")]
+position = Vector2(-85, -448)
+
+[node name="FuelPickUp2" parent="." instance=ExtResource("6_iueaw")]
+position = Vector2(120, -244)
 
 [connection signal="restart_game" from="UILayer/UI" to="." method="restart_game"]
